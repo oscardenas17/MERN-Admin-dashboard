@@ -9,7 +9,6 @@ import clientRoutes from "./routes/client.js";
 import generalRoutes from "./routes/general.js";
 import managementRoutes from "./routes/management.js";
 import salesRoutes from "./routes/sales.js";
- 
 
 /* CONFIGURATION */
 dotenv.config();
@@ -27,3 +26,14 @@ app.use("/client", clientRoutes);
 app.use("/general", generalRoutes);
 app.use("/management", managementRoutes);
 app.use("/sales", salesRoutes);
+
+/*  MONGOOSE SETUP */
+/* MONGOOSE SETUP */
+const PORT = process.env.PORT || 5000;
+mongoose
+  .connect(process.env.MONGO_URL)
+  .then(() => {
+    app.listen(PORT, () => console.log(`Connected to ${PORT}`));
+  })
+  .catch((err) => console.log(`Error: ${err}`));
+
